@@ -1,37 +1,29 @@
 #include <vector>
-#include <tuple>
+#include <utility>
 class Solution
 {
 public:
     void quickSortNonRec(std::vector<int> &array)
     {
-        std::vector<std::tuple<int, int>> partionPairs;
-        partionPairs.push_back(std::make_tuple(0, array.size() - 1));
-        while (int n = partionPairs.size())
+        std::vector<std::pair<int, int>> partions;
+        partions.push_back({0, array.size() - 1});
+        while (int n = partions.size())
         {
-            std::tuple<int, int> pair = partionPairs[n - 1];
-            partionPairs.pop_back();
-            int start = std::get<0>(pair);
-            int end = std::get<1>(pair);
+            std::pair<int, int> part = partions[n - 1];
+            partions.pop_back();
+            int start = part.first;
+            int end = part.second;
             int p = start;
+
             for (int i = p + 1; i <= end; i++)
-            {
-                if (array[i] < array[start])
-                {
-                    p++;
-                    int tmp = array[p];
-                    array[p] = array[i];
-                    array[i] = tmp;
-                }
-            }
-            int tmp = array[start];
-            array[start] = array[p];
-            array[p] = tmp;
+                if (array[i] < array[start]) //* only compare first value of pair
+                    std::swap(array[p], array[i]);
+            std::swap(array[start], array[p]);
 
             if (p - 1 > start)
-                partionPairs.push_back(std::make_tuple(start, p - 1));
+                partions.push_back({start, p - 1});
             if (end > p + 1)
-                partionPairs.push_back(std::make_tuple(p + 1, end));
+                partions.push_back({p + 1, end});
         }
     }
 };

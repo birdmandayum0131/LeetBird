@@ -1,5 +1,6 @@
 #include <vector>
 #include <utility>
+#include <iostream>
 class Solution
 {
 public:
@@ -17,7 +18,8 @@ public:
 
             for (int i = p + 1; i <= end; i++)
                 if (array[i] < array[start]) //* only compare first value of pair
-                    std::swap(array[p], array[i]);
+                    std::swap(array[++p], array[i]);
+
             std::swap(array[start], array[p]);
 
             if (p - 1 > start)
@@ -27,3 +29,13 @@ public:
         }
     }
 };
+
+int main(void)
+{
+    Solution solution;
+    std::vector<int> numbers = {6, 5, 4, 3, 2, 1, 0};
+    solution.quickSortNonRec(numbers);
+    for (int i = 0; i < numbers.size(); i++)
+        std::cout << numbers[i] << ",";
+    std::cout << "\b " << std::endl;
+}

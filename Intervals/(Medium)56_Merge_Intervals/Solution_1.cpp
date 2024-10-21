@@ -20,7 +20,7 @@ private:
 
             for (int i = p + 1; i <= end; i++)
                 if (array[i] < array[start]) //* only compare first value of pair
-                    std::swap(array[p], array[i]);
+                    std::swap(array[++p], array[i]);
             std::swap(array[start], array[p]);
 
             if (p - 1 > start)

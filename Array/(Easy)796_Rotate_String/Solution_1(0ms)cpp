@@ -1,0 +1,35 @@
+#include <chrono>
+#include <iostream>
+#include <tuple>
+#include <unordered_set>
+#include <vector>
+
+using namespace std;
+class Solution
+{
+  public:
+    bool rotateString(string s, string goal)
+    {
+        if (s.length() != goal.length())
+            return false;
+        int n = s.length();
+        unordered_set<string> stringSet;
+        stringSet.insert(goal);
+        for (int i = 0; i < n; i++)
+            if (stringSet.find(s.substr(i, n - i) + s.substr(0, i)) != stringSet.end())
+                return true;
+        return false;
+    }
+};
+// ! because of there is only one element, it doesn't need to use unordered_set(O(1) find), solution 2 is faster in nano seconds.
+int main(void)
+{
+    // auto start = chrono::steady_clock::now();
+    Solution solution;
+    string s = "abcde";
+    string goal = "cdeab";
+    bool output = solution.rotateString(s, goal);
+    cout << output << endl;
+    // auto end = chrono::steady_clock::now();
+    // cout << chrono::duration<double, std::nano>(end - start).count() << endl;
+}

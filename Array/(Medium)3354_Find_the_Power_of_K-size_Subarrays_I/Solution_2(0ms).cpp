@@ -8,7 +8,7 @@ class Solution
   public:
     vector<int> resultsArray(vector<int> &nums, int k)
     {
-        if (k == 1)
+        if (k == 1) // ? required because comparison must no be performed if k == 1
             return nums;
         int n = nums.size();
         vector<int> subarray_powers(n - k + 1);

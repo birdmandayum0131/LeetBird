@@ -35,9 +35,6 @@ int main(void)
 {
     Solution solution;
     vector<int> nums = {1, 3, 4};
-    int k = 2;
-    vector<int> result = solution.resultsArray(nums, k);
-    for (int i = 0; i < result.size(); i++)
-        cout << result[i] << ",";
-    cout << "\b " << endl;
+    int result = solution.countValidSelections(nums);
+    cout << result << endl;
 }

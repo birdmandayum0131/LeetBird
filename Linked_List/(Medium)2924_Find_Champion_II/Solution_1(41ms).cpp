@@ -25,6 +25,10 @@ class Solution
                 champion_count++;
             }
         }
+        if (champion_count == 1)
+            return champion;
+        else
+            return -1;
     }
 };
 
